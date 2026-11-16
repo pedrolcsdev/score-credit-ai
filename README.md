@@ -15,7 +15,7 @@ O desenvolvimento foi feito em um notebook Jupyter, seguindo um fluxo básico de
 3. Tratamento de colunas categóricas.
 4. Separação dos dados em treino e teste.
 5. Treinamento de modelos de machine learning.
-6. Avaliação da acurácia dos modelos.
+6. Avaliação dos modelos por classe e matriz de confusão.
 7. Previsão do score para novos clientes.
 
 ## Tecnologias utilizadas
@@ -32,14 +32,7 @@ Foram testados dois modelos de classificação:
 - Random Forest Classifier
 - K-Nearest Neighbors (KNN)
 
-No teste realizado no notebook, o modelo Random Forest apresentou melhor desempenho:
-
-| Modelo | Acurácia |
-| --- | ---: |
-| Random Forest | 82,47% |
-| KNN | 73,24% |
-
-Por isso, o Random Forest foi utilizado para fazer as previsões dos novos clientes.
+O notebook compara os modelos usando acurácia, precisão, recall, F1-score e matriz de confusão. O Random Forest é usado para prever o score dos novos clientes. Execute o notebook para obter os resultados da versão atual.
 
 ## Estrutura do projeto
 
@@ -80,7 +73,7 @@ Algumas variáveis usadas como entrada para o modelo são:
 - `saldo_final_mes`
 - informações sobre tipos de empréstimo
 
-As colunas textuais `profissao`, `mix_credito` e `comportamento_pagamento` foram convertidas em valores numéricos usando `LabelEncoder`, permitindo que os modelos conseguissem processar esses dados.
+As colunas categóricas usam `OneHotEncoder`, que aceita categorias desconhecidas na previsão. O pré-processamento é ajustado apenas com os dados de treino, e as variáveis numéricas são normalizadas para o KNN. Registros do mesmo cliente ficam no mesmo conjunto para evitar sua presença tanto no treino quanto no teste.
 
 ## Como executar
 
@@ -103,11 +96,7 @@ jupyter notebook
 
 Após o treinamento, o modelo Random Forest foi usado para prever o score de crédito dos clientes presentes em `novos_clientes.csv`.
 
-As previsões obtidas no notebook foram:
-
-```text
-['Poor', 'Poor', 'Standard']
-```
+Execute o notebook para gerar as previsões com o modelo atualizado.
 
 ## Aprendizados
 
@@ -117,13 +106,11 @@ Este projeto foi desenvolvido com finalidade acadêmica e serviu como prática i
 - preparação de variáveis categóricas;
 - separação entre dados de treino e teste;
 - criação e treinamento de modelos de classificação;
-- comparação de modelos usando acurácia;
+- comparação de modelos usando acurácia e métricas por classe;
 - aplicação do modelo treinado em novos dados.
 
 ## Possíveis melhorias
 
-- Normalizar os dados antes do uso do KNN.
-- Avaliar os modelos com outras métricas, como matriz de confusão, precisão, recall e F1-score.
 - Testar outros algoritmos de classificação.
 - Ajustar hiperparâmetros dos modelos.
 - Salvar o modelo treinado para reutilização futura.
