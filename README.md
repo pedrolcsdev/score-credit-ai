@@ -32,7 +32,14 @@ Foram testados dois modelos de classificação:
 - Random Forest Classifier
 - K-Nearest Neighbors (KNN)
 
-O notebook compara os modelos usando acurácia, precisão, recall, F1-score e matriz de confusão. O Random Forest é usado para prever o score dos novos clientes. Execute o notebook para obter os resultados da versão atual.
+O notebook compara os modelos usando acurácia, precisão, recall, F1-score e matriz de confusão. Na execução com pandas 3.1.1 e scikit-learn 1.9.1, os resultados foram:
+
+| Modelo | Acurácia | F1 médio por classe (macro) |
+| --- | ---: | ---: |
+| Random Forest | 68,63% | 0,67 |
+| KNN | 61,45% | 0,58 |
+
+O conjunto de teste teve 30.000 registros, com clientes separados entre treino e teste. O Random Forest obteve precisão/recall de 0,56/0,65 para `Good`, 0,69/0,65 para `Poor` e 0,73/0,72 para `Standard`. O notebook exibe também as matrizes de confusão. O Random Forest é usado para prever o score dos novos clientes.
 
 ## Estrutura do projeto
 
@@ -96,7 +103,7 @@ jupyter notebook
 
 Após o treinamento, o modelo Random Forest foi usado para prever o score de crédito dos clientes presentes em `novos_clientes.csv`.
 
-Execute o notebook para gerar as previsões com o modelo atualizado.
+Na execução acima, as previsões para os três registros, na ordem do arquivo, foram `Poor`, `Standard` e `Standard`.
 
 ## Aprendizados
 
